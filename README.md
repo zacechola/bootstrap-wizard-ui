@@ -34,6 +34,6 @@ $('.chunk-container').wizardBuilder({
 });
 ```
 Known issues:
-    - [] Doesn't play nicely if more than one wizard is on the page.
-    - [] Not yet Bootstrap feature complete.
-    - [] Nav doesn't like multiple headers with the same text values
+- [] Doesn't play nicely if more than one wizard is on the page.
+- [] Not yet Bootstrap feature complete.
+- [] Nav doesn't like multiple headers with the same text values
