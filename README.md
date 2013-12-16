@@ -1,4 +1,4 @@
-bootsrap-wizard-ui
+bootstrap-wizard-ui
 ==================
 
 A lightweight wizard UI for Bootstrap 3.
