@@ -25,7 +25,6 @@ Here's the UI with all current options explicitly set.
 ```javascript
 $('.chunk-container').wizardBuilder({
     modifierClass: "tabs", 
-    nextOption: "default",
     buttonSize: "sm",
     nextOption: "primary",
     previousOption: "default",
