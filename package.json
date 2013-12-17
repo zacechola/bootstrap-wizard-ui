@@ -1,0 +1,20 @@
+{
+  "name": "bootsrap-wizard-ui",
+  "version": "0.1.0",
+  "description": "A lightweight Wizard UI for bootstrap",
+  "main": "wizard.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zacechola/bootsrap-wizard-ui.git"
+  },
+  "keywords": [
+    "bootstrap",
+    "wizard",
+    "ui"
+  ],
+  "author": "Zac Echola",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zacechola/bootsrap-wizard-ui/issues"
+  }
+}
