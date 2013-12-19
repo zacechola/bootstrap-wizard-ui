@@ -58,7 +58,7 @@
                     headerText.push($(this).text());
                 });
                
-                list = $('<ul class="wizard-nav nav nav-' + this.options.modifierClass + '">');
+                list = $('<ul>');
                 list.addClass('wizard-nav nav nav-' + this.options.modifierClass);
 
                 $.each(headerText, function(i) {
