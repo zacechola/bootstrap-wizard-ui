@@ -52,22 +52,26 @@
 
         createNav: function (el) {
             try {
-                var headerText = [],
-                    html = '';
+               var headerText = [], list;
 
                 $(this.options.headerElement).each(function() {
                     headerText.push($(this).text());
                 });
                
-                // TODO: Make this less dirty, concats are lazy
-                html += '<ul class="wizard-nav nav nav-' + this.options.modifierClass + '">';
-                for (var i = 0, l = headerText.length; i < l; i++) {
-                    var v = headerText[i];
-                    html += '<li><a href="#">' + v + '</a></li>';
-                }
-                html += '</ul>';
+                list = $('<ul class="wizard-nav nav nav-' + this.options.modifierClass + '">');
+                list.addClass('wizard-nav nav nav-' + this.options.modifierClass);
+
+                $.each(headerText, function(i) {
+                    var li, a;
+                    li = $('<li>')
+                        .appendTo(list);
+                    a = $('<a>')
+                        .attr('href', '#')
+                        .text(headerText[i])
+                        .appendTo(li);
+                });
                 
-                $(el).prepend(html);
+                $(el).prepend(list);
 
             } catch (e) {
                 console.log(e);
@@ -79,15 +83,25 @@
                 var btnSize = this.options.buttonSize,
                     nextOption = this.options.nextOption,
                     previousOption = this.options.previousOption,
-                    html = '';
+                    buttonGroup, prevButton, nextButton;
 
-                // TODO: Again with the concat!
-                html = '<div class="wizard-btn-group btn-group pull-right">';
-                html += '<button type="button" class="prev-btn btn btn-' + previousOption + '">&larr; Previous</button>';
-                html += '<button type="button" class="next-btn btn btn-' + nextOption + '">Next &rarr;</button>';
-                html += '</div>';
 
-                $(el).append(html);
+                buttonGroup = $('<div>')
+                    .addClass('wizard-btn-group btn-group pull-right');
+
+                prevButton = $('<button>')
+                    .attr('type', 'button')
+                    .addClass('prev-btn btn btn-' + previousOption)
+                    .html('&larr; Previous')
+                    .appendTo(buttonGroup);
+
+                nextButton = $('<button>')
+                    .attr('type', 'button')
+                    .addClass('next-btn btn btn-' + nextOption)
+                    .html('Next &rarr;')
+                    .appendTo(buttonGroup);
+
+                $(el).append(buttonGroup);
 
                 // Add size class if necessary
                 if (btnSize !== "") {
