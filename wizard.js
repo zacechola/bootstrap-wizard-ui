@@ -8,8 +8,8 @@
         defaults = {
             // Bootstrap nav specific:
             modifierClass: "pills", // pills, tabs
-            /* currently unimplemented
             justified: false,  // false, true
+            /* currently unimplemented
             dropdowns: false, // false, true
             stacked: false,  // false, true
             */
@@ -72,6 +72,11 @@
                 });
                 
                 $(el).prepend(list);
+
+                // Add optional classes
+                if (this.options.justified) {
+                    list.addClass('nav-justified');
+                }
 
             } catch (e) {
                 console.log(e);
