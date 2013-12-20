@@ -28,6 +28,7 @@ $('.chunk-container').wizardBuilder({
     buttonSize: "sm",
     nextOption: "primary",
     previousOption: "default",
+    justified: true,
     headerElement: "h2",
     chunkClassName: ".chunk"
 });
