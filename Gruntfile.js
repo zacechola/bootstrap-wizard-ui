@@ -3,6 +3,12 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         jshint: {
+            options: {
+                funcscope: true,
+                globals: {
+                    jQuery: true,
+                }
+            },
             all: ['Gruntfile.js', 'src/*.js'],
         },
         
