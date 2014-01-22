@@ -1,6 +1,11 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+
+        jshint: {
+            all: ['Gruntfile.js', 'src/*.js'],
+        },
+        
         uglify: {
             build: {
                 src: 'src/wizard.js',
@@ -9,8 +14,9 @@ module.exports = function(grunt) {
         },
     });
 
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default', ['uglify']);
+    grunt.registerTask('default', ['jshint', 'uglify']);
 
 };
