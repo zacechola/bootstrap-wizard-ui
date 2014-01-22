@@ -119,23 +119,22 @@
         },
 
         state: function (el, options) {
-
             // Initial state on ready
-            if ($('.wizard-nav .active') !== []) {
-                $('.wizard-nav li').first().addClass('active');
+            if ($(el).find('.wizard-nav .active') !== []) {
+                $(el).find('.wizard-nav li').first().addClass('active');
                 $(this.options.chunkClassName + ':gt(0)').each(function() {
                     $(this).addClass('hide');
                 });
-                $('.prev-btn').addClass('disabled');
+                $(el).find('.prev-btn').addClass('disabled');
             }
 
             var CurrentState = {
-                activeNav: $('.wizard-nav li.active'),
-                nextNav:  $('.wizard-nav .active').next(),
-                prevNav:  $('.wizard-nav .active').prev(),
-                activeChunk:   $(this.options.chunkClassName).not('.hide'),
-                nextChunk:  $(this.options.chunkClassName).not('.hide').next(this.options.chunkClassName),
-                prevChunk:   $(this.options.chunkClassName).not('.hide').prev(this.options.chunkClassName),
+                activeNav: $(el).find('.wizard-nav li.active'),
+                nextNav:  $(el).find('.wizard-nav .active').next(),
+                prevNav:  $(el).find('.wizard-nav .active').prev(),
+                activeChunk:   $(el).find(this.options.chunkClassName).not('.hide'),
+                nextChunk:  $(el).find(this.options.chunkClassName).not('.hide').next(this.options.chunkClassName),
+                prevChunk:   $(el).find(this.options.chunkClassName).not('.hide').prev(this.options.chunkClassName),
             },
 
 
@@ -153,6 +152,49 @@
                 } else if ($activeNav.prev().length !== 0) {
                     $('.prev-btn').removeClass('disabled');
                 }
+            },
+
+            navState = function(direction) {
+                var $clickedNav = (typeof direction !== 'string') ? direction : null;
+                    
+                if ($clickedNav) {
+                    var map = $(options.chunkClassName + ' ' + options.headerElement + ':contains(' + $clickedNav.text() + ')'),
+                    mappedChunk = map.closest('section');
+                }
+
+                $(CurrentState.activeNav).removeClass('active');
+
+                if (direction === 'next') {
+                    $(CurrentState.nextNav).addClass('active');
+                } else if (direction === 'prev') {
+                    $(CurrentState.prevNav).addClass('active');
+                } else {
+                    $($clickedNav).closest('li').addClass('active');
+                }
+
+
+                CurrentState.activeNav = $('.wizard-nav .active');
+                CurrentState.nextNav = CurrentState.activeNav.next();
+                CurrentState.prevNav = CurrentState.activeNav.prev();
+
+                $(CurrentState.activeChunk).addClass('hide');
+
+                if (direction === 'next') {
+                    $(CurrentState.nextChunk).removeClass('hide');
+                } else if (direction === 'prev') {
+                    $(CurrentState.prevChunk).removeClass('hide');
+                } else {
+                    $(mappedChunk).removeClass('hide');
+                }
+
+
+                CurrentState.activeChunk = $(options.chunkClassName).not('.hide');
+                CurrentState.nextChunk = CurrentState.activeChunk.next(options.chunkClassName);
+                CurrentState.prevChunk = CurrentState.activeChunk.prev(options.chunkClassName);
+
+                if ($clickedNav) {
+                    navButtonEnableDisable();
+                }
             };
 
 
@@ -161,74 +203,20 @@
             $('.wizard-btn-group').on('click', function() {
                 navButtonEnableDisable();
             });
-            
 
-            // TODO: DRY these three bindings into a single function
             $('.wizard-btn-group .next-btn').on('click', function() {
-
-                $(CurrentState.activeNav).removeClass('active');
-                $(CurrentState.nextNav).addClass('active');
-                
-                CurrentState.activeNav = $('.wizard-nav .active');
-                CurrentState.nextNav = CurrentState.activeNav.next();
-                CurrentState.prevNav = CurrentState.activeNav.prev();
-
-                $(CurrentState.activeChunk).addClass('hide');
-                $(CurrentState.nextChunk).removeClass('hide');
-
-                CurrentState.activeChunk = $(options.chunkClassName).not('.hide');
-                CurrentState.nextChunk = CurrentState.activeChunk.next(options.chunkClassName);
-                CurrentState.prevChunk = CurrentState.activeChunk.prev(options.chunkClassName);
-
+                navState('next');
             });
 
             $('.wizard-btn-group .prev-btn').on('click', function() {
-
-                $(CurrentState.activeNav).removeClass('active');
-                $(CurrentState.prevNav).addClass('active');
-                
-                CurrentState.activeNav = $('.wizard-nav .active');
-                CurrentState.nextNav = CurrentState.activeNav.next();
-                CurrentState.prevNav = CurrentState.activeNav.prev();
-
-                $(CurrentState.activeChunk).addClass('hide');
-                $(CurrentState.prevChunk).removeClass('hide');
-
-                CurrentState.activeChunk = $(options.chunkClassName).not('.hide');
-                CurrentState.nextChunk = CurrentState.activeChunk.next(options.chunkClassName);
-                CurrentState.prevChunk = CurrentState.activeChunk.prev(options.chunkClassName);
-
+                navState('prev');
             });
 
             $('.wizard-nav a').on('click', function() {
-
                 // TODO: Make this handle multiple headerElements with the same name.
-                
-                var $clickedNav = $(this),
-                    classOption = options.chunkClassName,
-                    headerOption = options.headerElement,
-                    map = $(classOption + ' ' + headerOption + ':contains(' + $clickedNav.text() + ')'),
-                    mappedChunk = map.closest('section');
-                
-                $(CurrentState.activeNav).removeClass('active');
-                $($clickedNav).closest('li').addClass('active');
-                
-                CurrentState.activeNav = $('.wizard-nav .active');
-                CurrentState.nextNav = CurrentState.activeNav.next();
-                CurrentState.prevNav = CurrentState.activeNav.prev();
-
-                $(CurrentState.activeChunk).addClass('hide');
-                $(mappedChunk).removeClass('hide');
-
-                CurrentState.activeChunk = $(options.chunkClassName).not('.hide');
-                CurrentState.nextChunk = CurrentState.activeChunk.next(options.chunkClassName);
-                CurrentState.prevChunk = CurrentState.activeChunk.prev(options.chunkClassName);
-
-                navButtonEnableDisable();
+                navState($(this));
             });
-
         },
-        
     };
 
     // Wrapper
