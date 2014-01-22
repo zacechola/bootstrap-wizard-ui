@@ -159,7 +159,7 @@
                     
                 if ($clickedNav) {
                     var map = $(options.chunkClassName + ' ' + options.headerElement + ':contains(' + $clickedNav.text() + ')'),
-                    mappedChunk = map.closest('section');
+                    mappedChunk = map.closest(options.chunkClassName);
                 }
 
                 $(CurrentState.activeNav).removeClass('active');
