@@ -59,13 +59,16 @@
             
             list = $('<ul>');
             list.addClass('wizard-nav nav nav-' + this.options.modifierClass);
+            list.attr('role', 'tablist');
 
             $.each(headerText, function(i) {
                 var li, a;
                 li = $('<li>')
+                    .attr('role', 'presentation')
                     .appendTo(list);
                 a = $('<a>')
                     .attr('href', '#')
+                    .attr('role', 'tab')
                     .text(headerText[i])
                     .appendTo(li);
             });
@@ -91,12 +94,14 @@
 
             prevButton = $('<button>')
                 .attr('type', 'button')
+                .attr('role', 'button')
                 .addClass('prev-btn btn btn-' + previousOption)
                 .html('&larr; Previous')
                 .appendTo(buttonGroup);
 
             nextButton = $('<button>')
                 .attr('type', 'button')
+                .attr('role', 'button')
                 .addClass('next-btn btn btn-' + nextOption)
                 .html('Next &rarr;')
                 .appendTo(buttonGroup);
