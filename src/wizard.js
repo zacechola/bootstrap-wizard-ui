@@ -51,71 +51,63 @@
         },
 
         createNav: function (el) {
-            try {
-               var headerText = [], list;
+            var headerText = [], list;
 
-                $(this.options.headerElement).each(function() {
-                    headerText.push($(this).text());
-                });
-               
-                list = $('<ul>');
-                list.addClass('wizard-nav nav nav-' + this.options.modifierClass);
+            $(this.options.headerElement).each(function() {
+                headerText.push($(this).text());
+            });
+            
+            list = $('<ul>');
+            list.addClass('wizard-nav nav nav-' + this.options.modifierClass);
 
-                $.each(headerText, function(i) {
-                    var li, a;
-                    li = $('<li>')
-                        .appendTo(list);
-                    a = $('<a>')
-                        .attr('href', '#')
-                        .text(headerText[i])
-                        .appendTo(li);
-                });
-                
-                $(el).prepend(list);
+            $.each(headerText, function(i) {
+                var li, a;
+                li = $('<li>')
+                    .appendTo(list);
+                a = $('<a>')
+                    .attr('href', '#')
+                    .text(headerText[i])
+                    .appendTo(li);
+            });
+            
+            $(el).prepend(list);
 
-                // Add optional classes
-                if (this.options.justified) {
-                    list.addClass('nav-justified');
-                }
-
-            } catch (e) {
-                console.log(e);
+            // Add optional classes
+            if (this.options.justified) {
+                list.addClass('nav-justified');
             }
+
         },
 
         createButtons: function (el) {
-            try {
-                var btnSize = this.options.buttonSize,
-                    nextOption = this.options.nextOption,
-                    previousOption = this.options.previousOption,
-                    buttonGroup, prevButton, nextButton;
+            var btnSize = this.options.buttonSize,
+                nextOption = this.options.nextOption,
+                previousOption = this.options.previousOption,
+                buttonGroup, prevButton, nextButton;
 
 
-                buttonGroup = $('<div>')
-                    .addClass('wizard-btn-group btn-group pull-right');
+            buttonGroup = $('<div>')
+                .addClass('wizard-btn-group btn-group pull-right');
 
-                prevButton = $('<button>')
-                    .attr('type', 'button')
-                    .addClass('prev-btn btn btn-' + previousOption)
-                    .html('&larr; Previous')
-                    .appendTo(buttonGroup);
+            prevButton = $('<button>')
+                .attr('type', 'button')
+                .addClass('prev-btn btn btn-' + previousOption)
+                .html('&larr; Previous')
+                .appendTo(buttonGroup);
 
-                nextButton = $('<button>')
-                    .attr('type', 'button')
-                    .addClass('next-btn btn btn-' + nextOption)
-                    .html('Next &rarr;')
-                    .appendTo(buttonGroup);
+            nextButton = $('<button>')
+                .attr('type', 'button')
+                .addClass('next-btn btn btn-' + nextOption)
+                .html('Next &rarr;')
+                .appendTo(buttonGroup);
 
-                $(el).append(buttonGroup);
+            $(el).append(buttonGroup);
 
-                // Add size class if necessary
-                if (btnSize !== "") {
-                    $('button').addClass('btn-' + btnSize);
-                }
-
-            } catch (e) {
-                console.log(e);
+            // Add size class if necessary
+            if (btnSize !== "") {
+                $('button').addClass('btn-' + btnSize);
             }
+
         },
 
         state: function (el, options) {
