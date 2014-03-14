@@ -121,6 +121,7 @@
                 $(el).find('.wizard-nav li').first().addClass('active');
                 $(this.options.chunkClassName + ':gt(0)').each(function() {
                     $(this).addClass('hide');
+                    $(this).attr('aria-hidden', 'true');
                 });
                 $(el).find('.prev-btn').addClass('disabled');
             }
@@ -162,11 +163,17 @@
                 $(CurrentState.activeNav).removeClass('active');
 
                 if (direction === 'next') {
-                    $(CurrentState.nextNav).addClass('active');
+                    $(CurrentState.nextNav)
+                        .addClass('active')
+                        .find('a').focus();
                 } else if (direction === 'prev') {
-                    $(CurrentState.prevNav).addClass('active');
+                    $(CurrentState.prevNav)
+                        .addClass('active')
+                        .find('a').focus();
                 } else {
-                    $($clickedNav).closest('li').addClass('active');
+                    $($clickedNav).closest('li')
+                        .addClass('active')
+                        .find('a').focus();
                 }
 
 
@@ -175,13 +182,17 @@
                 CurrentState.prevNav = CurrentState.activeNav.prev();
 
                 $(CurrentState.activeChunk).addClass('hide');
+                $(CurrentState.activeChunk).attr('aria-hidden', 'true');
 
                 if (direction === 'next') {
                     $(CurrentState.nextChunk).removeClass('hide');
+                    $(CurrentState.nextChunk).attr('aria-hidden', 'false');
                 } else if (direction === 'prev') {
                     $(CurrentState.prevChunk).removeClass('hide');
+                    $(CurrentState.prevChunk).attr('aria-hidden', 'false');
                 } else {
                     $(mappedChunk).removeClass('hide');
+                    $(mappedChunk).attr('aria-hidden', 'false');
                 }
 
 
@@ -192,10 +203,28 @@
                 if ($clickedNav) {
                     navButtonEnableDisable();
                 }
+            },
+
+            // Keyboard 
+            checkKey = function(e) {
+                var $activeNav = $('.wizard-nav .active');
+
+                e = e || window.event;
+
+                if (e.keyCode == '37' && !$('.prev-btn').hasClass('disabled')) {
+                    navState('prev');
+                }
+                else if (e.keyCode == '39' && !$('.next-btn').hasClass('disabled')) {
+                    navState('next');
+                }
+
+                navButtonEnableDisable();
+
             };
 
 
             // UI bindings
+            document.onkeydown = checkKey;
 
             $('.wizard-btn-group').on('click', function() {
                 navButtonEnableDisable();
