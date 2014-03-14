@@ -226,4 +226,26 @@
         });
     };
 
+    // Data-API
+    $(window).on('load', function() {
+        $('[data-wizard="wizard"]').each(function() {
+
+            var $sections = $('[data-wizard="section"]'),
+                headerName;
+
+            // Add chunk class to each chunk
+            $sections.addClass('chunk');
+
+            // Find appropriate headers
+            $sections.find(':header').first(function() {
+                headerName = $(this).prop('tagName');
+            });
+
+            // Bind wizardBuilder
+            $(this).wizardBuilder({ 
+                headerElement: headerName
+            });
+        });
+    });
+
 })(jQuery, window, document);
