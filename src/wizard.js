@@ -8,7 +8,7 @@
         defaults = {
             // Bootstrap nav specific:
             modifierClass: "pills", // pills, tabs
-            justified: false,  // false, true
+            justified: true,  // false, true
             /* currently unimplemented
             dropdowns: false, // false, true
             stacked: false,  // false, true
@@ -256,7 +256,7 @@
     };
 
     // Data-API
-    $(window).on('load', function() {
+    $(document).ready(function() {
         $('[data-wizard="wizard"]').each(function() {
 
             var $sections = $('[data-wizard="section"]'),
