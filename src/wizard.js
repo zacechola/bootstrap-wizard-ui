@@ -205,23 +205,32 @@
                 }
             },
 
-            // Keyboard 
+            // Keyboard
             checkKey = function(e) {
                 var $activeNav = $('.wizard-nav .active');
 
                 e = e || window.event;
 
-                if (e.keyCode == '37' && !$('.prev-btn').hasClass('disabled')) {
+                if (e.keyCode == '37' && !$('.prev-btn').hasClass('disabled') && !inputFocus()) {
                     navState('prev');
                 }
-                else if (e.keyCode == '39' && !$('.next-btn').hasClass('disabled')) {
+                else if (e.keyCode == '39' && !$('.next-btn').hasClass('disabled') && !inputFocus()) {
                     navState('next');
                 }
 
                 navButtonEnableDisable();
 
-            };
+            },
 
+            inputFocus = function() {
+                var activeEl = document.activeElement.nodeName;
+
+                if (activeEl === 'TEXTAREA' || activeEl === 'INPUT') {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
 
             // UI bindings
             document.onkeydown = checkKey;
