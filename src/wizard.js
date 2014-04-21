@@ -137,18 +137,20 @@
 
 
             navButtonEnableDisable = function() {
-                var $activeNav = $('.wizard-nav .active');
+                var $activeNav = $('.wizard-nav .active'),
+                    $next = $('.next-btn'),
+                    $prev = $('.prev-btn');
 
                 if ($activeNav.next().length === 0) {
-                    $('.next-btn').addClass('disabled');
+                    $next.prop('disabled', true).addClass('disabled');
                 } else if ($activeNav.next().length !== 0) {
-                    $('.next-btn').removeClass('disabled');
+                    $next.prop('disabled', false).removeClass('disabled');
                 }
 
                 if ($activeNav.prev().length === 0) {
-                    $('.prev-btn').addClass('disabled');
+                    $prev.prop('disabled', true).addClass('disabled');
                 } else if ($activeNav.prev().length !== 0) {
-                    $('.prev-btn').removeClass('disabled');
+                    $prev.prop('disabled', true).removeClass('disabled');
                 }
             },
 
