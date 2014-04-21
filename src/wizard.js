@@ -150,7 +150,7 @@
                 if ($activeNav.prev().length === 0) {
                     $prev.prop('disabled', true).addClass('disabled');
                 } else if ($activeNav.prev().length !== 0) {
-                    $prev.prop('disabled', true).removeClass('disabled');
+                    $prev.prop('disabled', false).removeClass('disabled');
                 }
             },
 
