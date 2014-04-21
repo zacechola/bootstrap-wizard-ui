@@ -123,7 +123,7 @@
                     $(this).addClass('hide');
                     $(this).attr('aria-hidden', 'true');
                 });
-                $(el).find('.prev-btn').addClass('disabled');
+                $(el).find('.prev-btn').prop('disabled', true).addClass('disabled');
             }
 
             var CurrentState = {
