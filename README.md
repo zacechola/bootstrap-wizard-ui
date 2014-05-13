@@ -41,7 +41,7 @@ Here's the call with all options explicitly set.
 
 ```javascript
 $('.chunk-container').wizardBuilder({
-    modifierClass: "tabs", 
+    modifierClass: "tabs",
     buttonSize: "sm",
     nextOption: "primary",
     previousOption: "default",
@@ -50,7 +50,12 @@ $('.chunk-container').wizardBuilder({
     chunkClassName: ".chunk"
 });
 ```
-Known issues:
-- [] Doesn't play nicely if more than one wizard is on the page.
-- [] Not yet Bootstrap feature complete.
-- [] Nav doesn't like multiple headers with the same text values
+Several custom events are emitted:
+
+- `wizard.bs.show` fires when section is shown
+- `wizard.bs.hide` fires when a section is hidden
+- `wizard.bs.next` fires when the next button is clicked
+- `wizard.bs.prev` fires when the prev button is clicked
+- `wizard.bs.nav` fires when the navigation items are clicked
+
+These are useful for hooking into when custom functionality is needed on top of the default wizard behavior. For example, if you would like to validate for elements on the visible section when the user attempts to navigate to a new section.

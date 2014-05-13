@@ -155,10 +155,11 @@
             },
 
             navState = function(direction) {
-                var $clickedNav = (typeof direction !== 'string') ? direction : null;
+                var mappedChunk,
+                    $clickedNav = (typeof direction !== 'string') ? direction : null;
 
                 if ($clickedNav) {
-                    var map = $(options.chunkClassName + ' ' + options.headerElement + ':contains(' + $clickedNav.text() + ')'),
+                    var map = $(options.chunkClassName + ' ' + options.headerElement + ':contains(' + $clickedNav.text() + ')');
                     mappedChunk = map.closest(options.chunkClassName);
                 }
 
@@ -167,14 +168,17 @@
                 if (direction === 'next') {
                     $(CurrentState.nextNav)
                         .addClass('active')
+                        .trigger('wizard.bs.next')
                         .find('a').focus();
                 } else if (direction === 'prev') {
                     $(CurrentState.prevNav)
                         .addClass('active')
+                        .trigger('wizard.bs.prev')
                         .find('a').focus();
                 } else {
                     $($clickedNav).closest('li')
                         .addClass('active')
+                        .trigger('wizard.bs.nav')
                         .find('a').focus();
                 }
 
@@ -183,18 +187,26 @@
                 CurrentState.nextNav = CurrentState.activeNav.next();
                 CurrentState.prevNav = CurrentState.activeNav.prev();
 
-                $(CurrentState.activeChunk).addClass('hide');
-                $(CurrentState.activeChunk).attr('aria-hidden', 'true');
+                $(CurrentState.activeChunk)
+                    .addClass('hide')
+                    .attr('aria-hidden', 'true')
+                    .trigger('wizard.bs.hide');
 
                 if (direction === 'next') {
-                    $(CurrentState.nextChunk).removeClass('hide');
-                    $(CurrentState.nextChunk).attr('aria-hidden', 'false');
+                    $(CurrentState.nextChunk)
+                        .removeClass('hide')
+                        .attr('aria-hidden', 'false')
+                        .trigger('wizard.bs.show');
                 } else if (direction === 'prev') {
-                    $(CurrentState.prevChunk).removeClass('hide');
-                    $(CurrentState.prevChunk).attr('aria-hidden', 'false');
+                    $(CurrentState.prevChunk)
+                        .removeClass('hide')
+                        .attr('aria-hidden', 'false')
+                        .trigger('wizard.bs.show');
                 } else {
-                    $(mappedChunk).removeClass('hide');
-                    $(mappedChunk).attr('aria-hidden', 'false');
+                    $(mappedChunk)
+                        .removeClass('hide')
+                        .attr('aria-hidden', 'false')
+                        .trigger('wizard.bs.show');
                 }
 
 
