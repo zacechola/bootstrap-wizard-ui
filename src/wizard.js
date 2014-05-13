@@ -13,7 +13,7 @@
             dropdowns: false, // false, true
             stacked: false,  // false, true
             */
-            
+ 
             // Bootstrap button specific:
             buttonSize: "", // "", lg, sm, xs
             nextOption: "primary", // primary, default, success, info, warning, danger, link
@@ -56,7 +56,7 @@
             $(this.options.headerElement).each(function() {
                 headerText.push($(this).text());
             });
-            
+ 
             list = $('<ul>');
             list.addClass('wizard-nav nav nav-' + this.options.modifierClass);
             list.attr('role', 'tablist');
@@ -72,7 +72,7 @@
                     .text(headerText[i])
                     .appendTo(li);
             });
-            
+
             $(el).prepend(list);
 
             // Add optional classes
@@ -156,7 +156,7 @@
 
             navState = function(direction) {
                 var $clickedNav = (typeof direction !== 'string') ? direction : null;
-                    
+
                 if ($clickedNav) {
                     var map = $(options.chunkClassName + ' ' + options.headerElement + ':contains(' + $clickedNav.text() + ')'),
                     mappedChunk = map.closest(options.chunkClassName);
