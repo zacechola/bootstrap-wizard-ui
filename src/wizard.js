@@ -158,12 +158,14 @@
                 var mappedChunk,
                     $clickedNav = (typeof direction !== 'string') ? direction : null;
 
+                $(CurrentState.activeChunk).trigger('wizard.bs.start');
+
                 if ($clickedNav) {
                     var map = $(options.chunkClassName + ' ' + options.headerElement + ':contains(' + $clickedNav.text() + ')');
                     mappedChunk = map.closest(options.chunkClassName);
                 }
 
-                $(CurrentState.activeNav).removeClass('active');
+                $(CurrentState.activeNav).trigger('wizard.bs.hide').removeClass('active');
 
                 if (direction === 'next') {
                     $(CurrentState.nextNav)
@@ -217,6 +219,9 @@
                 if ($clickedNav) {
                     navButtonEnableDisable();
                 }
+
+                $(CurrentState.activeChunk).trigger('wizard.bs.end');
+
             },
 
             // Keyboard
@@ -265,6 +270,9 @@
                 // TODO: Make this handle multiple headerElements with the same name.
                 navState($(this));
             });
+
+
+
         },
     };
 

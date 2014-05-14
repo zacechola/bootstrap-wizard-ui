@@ -50,8 +50,10 @@ $('.chunk-container').wizardBuilder({
     chunkClassName: ".chunk"
 });
 ```
-Several custom events are emitted:
+Custom events are emitted:
 
+- `wizard.bs.start` fires when the section begins to change
+- `wizard.bs.end` fires when the section ends
 - `wizard.bs.show` fires when section is shown
 - `wizard.bs.hide` fires when a section is hidden
 - `wizard.bs.next` fires when the next button is clicked
