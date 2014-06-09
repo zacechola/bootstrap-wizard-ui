@@ -90,7 +90,7 @@
 
 
             buttonGroup = $('<div>')
-                .addClass('wizard-btn-group btn-group');
+                .addClass('wizard-btn-group btn-group pull-right');
 
             prevButton = $('<button>')
                 .attr('type', 'button')
