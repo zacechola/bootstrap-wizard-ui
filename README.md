@@ -45,11 +45,24 @@ $('.chunk-container').wizardBuilder({
     buttonSize: "sm",
     nextOption: "primary",
     previousOption: "default",
+    navBtnPosition: "pull-right",
     justified: true,
     headerElement: "h2",
     chunkClassName: ".chunk"
 });
 ```
+
+| Option           | Values                | Description                            |
+|------------------|:----------------------|:---------------------------------------|
+| modifierClass    | pills, tabs           | Which nav class to use                 |
+| justified        | true, false           | Justify the nav                        |
+| buttonSize       | xs, sm, md, lg        | Define the size of the nav buttons     |
+| nextOption       | primary, default, success, danger, info, warning, link | Define the color/style of the next button |
+| previousOption   | primary, default, success, danger, info, warning, link | Define the color/style of the previous button |
+| headerElement    | h2 (default)          | The header element within each section |
+| chunkClassName   | .chunk (default)      | User-defined class given to each section |
+
+
 Custom events are emitted:
 
 - `wizard.bs.start` fires when the section begins to change

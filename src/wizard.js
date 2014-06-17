@@ -18,13 +18,11 @@
             buttonSize: "", // "", lg, sm, xs
             nextOption: "primary", // primary, default, success, info, warning, danger, link
             previousOption: "default", // primary, default, success, info, warning, danger, link
-            // chevronGlyphicons: false, // currently unimplemented
 
             // These are opinions, feel free to have your own
             headerElement: "h2",
             chunkClassName: ".chunk",
-
-            // TODO: Allow for dropdown menus, but how to display in wizard?
+            navBtnPosition: "", // "", pull-right
 
         };
 
@@ -90,7 +88,11 @@
 
 
             buttonGroup = $('<div>')
-                .addClass('wizard-btn-group btn-group pull-right');
+                .addClass('wizard-btn-group btn-group');
+
+            if (this.options.navBtnPosition) {
+                buttonGroup.addClass('pull-right');
+            }
 
             prevButton = $('<button>')
                 .attr('type', 'button')
