@@ -58,6 +58,7 @@ $('.chunk-container').wizardBuilder({
 | justified        | true, false           | Justify the nav                        |
 | buttonSize       | xs, sm, md, lg        | Define the size of the nav buttons     |
 | nextOption       | primary, default, success, danger, info, warning, link | Define the color/style of the next button |
+| navBtnPosition   | "" (default), pull-right | Position of the nav buttons, defaults to left side unless pulled right |
 | previousOption   | primary, default, success, danger, info, warning, link | Define the color/style of the previous button |
 | headerElement    | h2 (default)          | The header element within each section |
 | chunkClassName   | .chunk (default)      | User-defined class given to each section |
