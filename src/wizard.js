@@ -51,7 +51,7 @@
         createNav: function (el) {
             var headerText = [], list;
 
-            $(this.options.headerElement).each(function() {
+            $(this.options.chunkClassName + ' ' + this.options.headerElement).each(function() {
                 headerText.push($(this).text());
             });
  
@@ -304,7 +304,7 @@
             });
 
             // Bind wizardBuilder
-            $(this).wizardBuilder({ 
+            $(this).wizardBuilder({
                 headerElement: headerName
             });
         });
