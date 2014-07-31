@@ -299,9 +299,8 @@
             $sections.addClass('chunk');
 
             // Find appropriate headers
-            $sections.find(':header').first(function() {
-                headerName = $(this).prop('tagName');
-            });
+            headerName = $sections.find(':header').first().prop('tagName');
+            console.log(headerName);
 
             // Bind wizardBuilder
             $(this).wizardBuilder({
