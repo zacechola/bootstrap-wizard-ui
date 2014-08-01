@@ -300,7 +300,6 @@
 
             // Find appropriate headers
             headerName = $sections.find(':header').first().prop('tagName');
-            console.log(headerName);
 
             // Bind wizardBuilder
             $(this).wizardBuilder({
